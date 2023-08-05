@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Climate+Crisis&family=Merriweather:wght@400;700&family=Roboto:wght@300;400;500;700;900&display=swap');
+body{background-color: #f2f2f2;}
+.logo{ max-width: 320px }
+.menu{font-family: 'Roboto', sans-serif !important; font-size: 17px}
+
+.menu li{padding-left: 1.5em; padding-right: 1.5em}
+.menu li:hover{ background-color: #06053a; color:#fff; }
+.menu li:hover nav-link{color:#fff!important }
+.nav-link{color:#06053a;}
+.nav-link:hover{color:#fff;}
+.busqueda{border:2px solid #06053a; border-radius:30px 0 0 30px }
+.btnBusqueda{border:2px solid #06053a !important; background-color: #0cc1b0; border-radius:0 30px  30px 0 !important; }
+.carousel-indicators{background-color:rgba(242,242,242,0.38); margin-right: 40%; margin-left: 40%; border-radius:30px; }
+.botonSlide{width: 23px; height: 23px !important; border-radius: 18px !important; border:4px solid #f2f2f2 !important; margin-top: 5px; margin-bottom: 5px; background-color: transparent !important; } 
+.carousel-indicators .active{ background-color: #0cc1b0 !important; }
+.bgAzul{ background-color: #06053a; color:#f2f2f2; }
+.fontMerri{font-family: 'Merriweather', serif; }
+.fontClimate{font-family: 'Climate Crisis', cursive;}
+.celeste{color:#8cddbc;}
+.bgCeleste{background-color: #8cddbc;}
+
+.paddingRow{padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);}
+.fSize20{font-size: 20px}
+.fSize45{font-size: 45px}
+.filtros{ font-size:14px; color: #06053a;  letter-spacing: 2px}
+.itemFiltro{}
+.azul{ color: #06053a;}
+#filtros .list-group-item{background-color:#8cddbc; border-color:#06053a; }
+#filtros .list-group-item a{text-decoration: none; color: #06053a}
+#filtros .list-group-item a:hover{text-decoration: underline}
+#filtros .list-group-item i{font-size: 20px}
+
+#vistaPrevia .card-title{color: #079dd8;}
+#vistaPrevia .card-text{color:#06053a; font-size: 13px; }
+#vistaPrevia .verMas{text-transform: uppercase; cursor: pointer; font-size: 14px; color: #06053a; border:2px solid #06053a; border-radius:15px; padding: 2px 10px; font-weight:bold;}
+#vistaPrevia .verMas:hover{background-color: #079dd8}
+.unaVista{ border-bottom: 1px solid #06053a;  }
