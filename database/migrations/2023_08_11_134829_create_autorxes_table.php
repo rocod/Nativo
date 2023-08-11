@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormatoTable extends Migration
+class CreateAutorxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateFormatoTable extends Migration
      */
     public function up()
     {
-        Schema::create('formato', function (Blueprint $table) {
-            $table->id();
+        Schema::create('autorxes', function (Blueprint $table) {
+           $table->id();
             $table->string('nombre');
+            $table->string('apellido');
+            $table->Integer('estado');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateFormatoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formato');
+        Schema::dropIfExists('autorxes');
     }
 }

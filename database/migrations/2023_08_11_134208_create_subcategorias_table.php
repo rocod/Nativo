@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEtiquetaTable extends Migration
+class CreateSubcategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateEtiquetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('etiqueta', function (Blueprint $table) {
+        Schema::create('subcategorias', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->Integer('estado');
+            $table->Integer('estado');         
+            $table->bigInteger('id_eje')->unsigned();
             $table->timestamps();
+            $table->foreign('id_eje')->references('id')->on('ejes');//->onDelete('cascade');
         });
     }
 
@@ -28,6 +30,6 @@ class CreateEtiquetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('etiqueta');
+        Schema::dropIfExists('subcategorias');
     }
 }

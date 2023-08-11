@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubcategoriaTable extends Migration
+class CreateEjesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateSubcategoriaTable extends Migration
      */
     public function up()
     {
-        Schema::create('subcategoria', function (Blueprint $table) {
+        Schema::create('ejes', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->Integer('estado');         
-            $table->bigInteger('id_eje')->unsigned();
+            //$table->bigInteger('id_bloque')->unsigned();
             $table->timestamps();
-            $table->foreign('id_eje')->references('id')->on('eje');//->onDelete('cascade');
+           // $table->foreign('id_bloque')->references('id')->on('bloques')->onDelete('cascade');
         });
     }
 
@@ -30,6 +30,6 @@ class CreateSubcategoriaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcategoria');
+        Schema::dropIfExists('ejes');
     }
 }

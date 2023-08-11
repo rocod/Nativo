@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContenidoTable extends Migration
+class CreateContenidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class CreateContenidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('contenido', function (Blueprint $table) {
-            $table->id();
-            
+        Schema::create('contenidos', function (Blueprint $table) {
             $table->string('titulo');
             $table->string('resumen');
             $table->string('texto');
@@ -31,14 +29,13 @@ class CreateContenidoTable extends Migration
             $table->bigInteger('id_licencia')->unsigned();
 
             $table->timestamps();
-            $table->foreign('id_subcategoria')->references('id')->on('subcategoria');
-            $table->foreign('id_nivel')->references('id')->on('nivel');
-            $table->foreign('id_formato')->references('id')->on('formato');
-            $table->foreign('id_etiqueta')->references('id')->on('etiqueta');
-            $table->foreign('id_autor')->references('id')->on('autor');
-            $table->foreign('id_contribuyente')->references('id')->on('autor');
-            $table->foreign('id_licencia')->references('id')->on('licencia');
-           
+            $table->foreign('id_subcategoria')->references('id')->on('subcategorias');
+            $table->foreign('id_nivel')->references('id')->on('nivels');
+            $table->foreign('id_formato')->references('id')->on('formatos');
+            $table->foreign('id_etiqueta')->references('id')->on('etiquetas');
+            $table->foreign('id_autor')->references('id')->on('autorxes');
+            $table->foreign('id_contribuyente')->references('id')->on('contribuyentes');
+            $table->foreign('id_licencia')->references('id')->on('licencias');
         });
     }
 
@@ -49,6 +46,6 @@ class CreateContenidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contenido');
+        Schema::dropIfExists('contenidos');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEjeTable extends Migration
+class CreateFormatosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateEjeTable extends Migration
      */
     public function up()
     {
-        Schema::create('eje', function (Blueprint $table) {
+        Schema::create('formatos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->Integer('estado');         
-            //$table->bigInteger('id_bloque')->unsigned();
+            $table->string('descripcion');
             $table->timestamps();
-           // $table->foreign('id_bloque')->references('id')->on('bloques')->onDelete('cascade');
         });
     }
 
@@ -30,6 +28,6 @@ class CreateEjeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eje');
+        Schema::dropIfExists('formatos');
     }
 }
