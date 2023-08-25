@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Eje;
 use App\Http\Requests\StoreEjeRequest;
 use App\Http\Requests\UpdateEjeRequest;
+use Illuminate\Http\Request;
 
 class EjeController extends Controller
 {
@@ -15,7 +16,9 @@ class EjeController extends Controller
      */
     public function index()
     {
-        //
+        return view("ejes.lista")->with([
+            'ejes'=>Eje::all(),
+        ]);
     }
 
     /**
@@ -25,7 +28,7 @@ class EjeController extends Controller
      */
     public function create()
     {
-        //
+        return view("ejes.create");
     }
 
     /**
@@ -34,9 +37,20 @@ class EjeController extends Controller
      * @param  \App\Http\Requests\StoreEjeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreEjeRequest $request)
+    public function grabarEje(Request $request)
     {
-        //
+        
+        $rules=[
+        'nombre'=>['required','max:100'],      
+        
+        ];
+        request()->validate($rules);
+
+
+        $eje=Eje::create(request()->all());
+
+        session()->flash('success', 'El eje fue creado con éxito');
+        return redirect()->route("ejes");
     }
 
     /**
@@ -45,9 +59,13 @@ class EjeController extends Controller
      * @param  \App\Models\Eje  $eje
      * @return \Illuminate\Http\Response
      */
-    public function show(Eje $eje)
+    public function show($eje)
     {
-        //
+
+        return view('ejes.edit')->with([
+        'eje'=>Eje::findOrFail($eje),      
+
+       ]);
     }
 
     /**
@@ -56,9 +74,18 @@ class EjeController extends Controller
      * @param  \App\Models\Eje  $eje
      * @return \Illuminate\Http\Response
      */
-    public function edit(Eje $eje)
+    public function edit($eje)
     {
-        //
+        $rules=[
+        'nombre'=>['required','max:100'],      
+        
+        ];
+        request()->validate($rules);
+
+        $eje=Eje::findOrFail($eje);
+        $eje->update(request()->all());
+
+        return redirect()->route("ejes");
     }
 
     /**
@@ -68,9 +95,12 @@ class EjeController extends Controller
      * @param  \App\Models\Eje  $eje
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateEjeRequest $request, Eje $eje)
+    public function borrar($eje)
     {
-        //
+        return view('ejes.borrar')->with([
+        'eje'=>Eje::findOrFail($eje),      
+
+       ]);
     }
 
     /**
@@ -79,8 +109,11 @@ class EjeController extends Controller
      * @param  \App\Models\Eje  $eje
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Eje $eje)
+    public function destroy($eje)
     {
-        //
+        $eje=Eje::findOrFail($eje);
+        $eje->delete();
+
+        return redirect()->route("ejes");
     }
 }

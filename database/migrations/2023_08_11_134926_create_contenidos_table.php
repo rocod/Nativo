@@ -16,16 +16,17 @@ class CreateContenidosTable extends Migration
         Schema::create('contenidos', function (Blueprint $table) {
             $table->string('titulo');
             $table->string('resumen');
-            $table->string('texto');
+            $table->string('texto')->nullable();
             $table->string('portada');
-            $table->string('link');
-            $table->string('archivo');
+            $table->string('link')->nullable();
+            $table->string('archivo')->nullable();
+            $table->Integer('estado')->default(1);
             $table->bigInteger('id_subcategoria')->unsigned();
             $table->bigInteger('id_nivel')->unsigned();
             $table->bigInteger('id_formato')->unsigned();
             $table->bigInteger('id_etiqueta')->unsigned();
             $table->bigInteger('id_autor')->unsigned();
-            $table->bigInteger('id_contribuyente')->unsigned();
+            $table->bigInteger('id_contribuyente')->unsigned()->nullable();
             $table->bigInteger('id_licencia')->unsigned();
 
             $table->timestamps();

@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Autorx extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'nombre',
+        'apellido',
+               
+    ];
 }

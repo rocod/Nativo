@@ -15,7 +15,11 @@ class CreateContribuyentesTable extends Migration
     {
         Schema::create('contribuyentes', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('apellido');
+            $table->Integer('estado')->default(1);
             $table->timestamps();
+
         });
     }
 

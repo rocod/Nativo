@@ -12,13 +12,13 @@
     <title>Administración de Contenidos</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -36,10 +36,25 @@
                 <div class="sidebar-brand-text mx-3"></div>
             </a>
 
+           
+
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-           
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Contenidos</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Acciones:</h6>
+                        <a class="collapse-item" href="/contenidos">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
+                        
+                    </div>
+                </div>
+            </li>
 
 
             <!-- Heading -->
@@ -57,7 +72,7 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/ejes">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -70,11 +85,10 @@
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span>Subcategorías</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/subcategorias">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -83,16 +97,16 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNiveles"
+                    aria-expanded="true" aria-controls="collapseNiveles">
                     <i class="fas fa-fw fa-layer-group"></i>
                     <span>Niveles</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseNiveles" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/niveles">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -100,16 +114,16 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEtiquetas"
+                    aria-expanded="true" aria-controls="collapseEtiquetas">
                     <i class="fas fa-fw fa-hashtag"></i>
                     <span>Etiquetas</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseEtiquetas" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/etiquetas">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -117,17 +131,17 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAutorxs"
+                    aria-expanded="true" aria-controls="collapseAutorxs">
                    
                     <i class="fas fa-fw fa-id-badge"></i>
                     <span>Autorxs</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseAutorxs" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todxs  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/autorxs">Ver todxs  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -135,16 +149,16 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseContribuyentes"
+                    aria-expanded="true" aria-controls="collapseContribuyentes">
                     <i class="fas fa-user-tag"></i>
                     <span>Otros Contrib.</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseContribuyentes" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todxs  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/contribuyentes">Ver todxs  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -152,16 +166,16 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLicencias"
+                    aria-expanded="true" aria-controls="collapseLicencias">
                     <i class="fas fa-copyright"></i>
                     <span>Licencias</span>
                 </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                <div id="collapseLicencias" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                        <h6 class="collapse-header">Acciones:</h6>
-                        <a class="collapse-item" href="#">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
+                        <a class="collapse-item" href="/licencias">Ver todas  <i class="fas fa-fw fa-pen"></i></a>
                         <a class="collapse-item" href="#">Ocultar filtro <i class="fas fa-eye-slash"></i></a>
                     </div>
                 </div>
@@ -337,22 +351,22 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-    <script src="js/demo/chart-bar-demo.js"></script>
+    <script src="/js/demo/chart-area-demo.js"></script>
+    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/demo/chart-bar-demo.js"></script>
 
 </body>
 

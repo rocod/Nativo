@@ -17,7 +17,7 @@ class CreateAutorxesTable extends Migration
            $table->id();
             $table->string('nombre');
             $table->string('apellido');
-            $table->Integer('estado');
+             $table->Integer('estado')->default(1);
             $table->timestamps();
         });
     }
