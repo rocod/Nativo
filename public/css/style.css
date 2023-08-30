@@ -4,8 +4,8 @@ body{background-color: #f2f2f2;}
 .menu{font-family: 'Roboto', sans-serif !important; font-size: 17px}
 
 .menu li{padding-left: 1.5em; padding-right: 1.5em}
-.menu li:hover{ background-color: #06053a; color:#fff; }
-.menu li:hover nav-link{color:#fff!important }
+.menu li:hover a{ background-color: #06053a; color:#fff; }
+.menu li:hover a nav-link{color:#fff!important }
 .nav-link{color:#06053a;}
 .nav-link:hover{color:#fff;}
 .busqueda{border:2px solid #06053a; border-radius:30px 0 0 30px }
@@ -22,7 +22,7 @@ body{background-color: #f2f2f2;}
 .paddingRow{padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);}
 .fSize20{font-size: 20px}
-.fSize45{font-size: 45px}
+.fSize45{font-size: 40px}
 .filtros{ font-size:14px; color: #06053a;  letter-spacing: 2px}
 .itemFiltro{}
 .azul{ color: #06053a;}
@@ -36,3 +36,34 @@ body{background-color: #f2f2f2;}
 #vistaPrevia .verMas{text-transform: uppercase; cursor: pointer; font-size: 14px; color: #06053a; border:2px solid #06053a; border-radius:15px; padding: 2px 10px; font-weight:bold;}
 #vistaPrevia .verMas:hover{background-color: #079dd8}
 .unaVista{ border-bottom: 1px solid #06053a;  }
+.bgceleste{background-color:#189cd5;}
+.bgfucsia{background-color:#e71c5f;}
+.bgnaranja{background-color:#f28f2d;}
+.bgturquesa{background-color:#26b5a8;}
+.ejesInicio{color:#191834; text-align: center}
+.btn-vermas{ border:2px  #191834 solid; border-radius:10px; color: #191834; font-weight: bold;
+display:inline-block; padding: 0.1em 0.5em }
+.btn-vermas:hover{background-color: #fff; cursor: pointer;}
+.radius1{ border-radius: 40% 0 0 0 ;  }
+.colorazul{ color: #191834 !important }
+.comunidadTit{font-size: 1.3rem}
+.comunidadParrafo{line-height: 0.8rem; font-size: 0.7rem}
+.fdoTriang{background-image: url(/img/triangulos.PNG); background-repeat: no-repeat; background-position: center; background-color: #fff; }
+.radius2{border:2px solid #191834;  border-radius: 0 0 30% 0;  }
+.fondoInicio{ background-image: url(/img/fondoInicio.png); background-size: cover; 
+	min-height: 500px; position: relative; }
+.titPlatCont{ max-width: 50% }
+.lineaArri{ margin-left: -25px}
+.titTarjetas{text-transform: uppercase; font-size: 19px; color: #191834}
+.lineaTur{margin-right: -25px}
+.adorno1{position: absolute; top: 5%; left:60%; z-index: 10}
+.adorno1 img{width: 10%;}
+.adorno2{position: absolute; top: 20%; left:15%; z-index: 11}
+.adorno2 img{width: 4%;}
+.adorno3{position: absolute; top: 50%; left:10%; z-index: 12}
+.adorno3 img{width: 15%;}
+.adorno4{position: absolute; top: 50%; left:70%; z-index: 13}
+.adorno4 img{width: 20%;}
+
+.piedePag{ width: 100%; position: relative; }
+.verMascon{ text-decoration: none ; }

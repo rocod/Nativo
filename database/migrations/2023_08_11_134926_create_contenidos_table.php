@@ -14,9 +14,10 @@ class CreateContenidosTable extends Migration
     public function up()
     {
         Schema::create('contenidos', function (Blueprint $table) {
+            $table->id();
             $table->string('titulo');
             $table->string('resumen');
-            $table->string('texto')->nullable();
+            $table->string('texto', 60000)->nullable();
             $table->string('portada');
             $table->string('link')->nullable();
             $table->string('archivo')->nullable();
@@ -24,7 +25,7 @@ class CreateContenidosTable extends Migration
             $table->bigInteger('id_subcategoria')->unsigned();
             $table->bigInteger('id_nivel')->unsigned();
             $table->bigInteger('id_formato')->unsigned();
-            $table->bigInteger('id_etiqueta')->unsigned();
+            
             $table->bigInteger('id_autor')->unsigned();
             $table->bigInteger('id_contribuyente')->unsigned()->nullable();
             $table->bigInteger('id_licencia')->unsigned();
@@ -33,7 +34,7 @@ class CreateContenidosTable extends Migration
             $table->foreign('id_subcategoria')->references('id')->on('subcategorias');
             $table->foreign('id_nivel')->references('id')->on('nivels');
             $table->foreign('id_formato')->references('id')->on('formatos');
-            $table->foreign('id_etiqueta')->references('id')->on('etiquetas');
+         
             $table->foreign('id_autor')->references('id')->on('autorxes');
             $table->foreign('id_contribuyente')->references('id')->on('contribuyentes');
             $table->foreign('id_licencia')->references('id')->on('licencias');

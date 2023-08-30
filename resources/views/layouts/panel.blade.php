@@ -42,12 +42,12 @@
             <hr class="sidebar-divider my-0">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Conten"
+                    aria-expanded="true" aria-controls="Conten">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Contenidos</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="Conten" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Acciones:</h6>
                         <a class="collapse-item" href="/contenidos">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
@@ -297,6 +297,31 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    <div class="row justify-content-center">
+                        <div class="col-md-12 text-center">
+                            @if (session('success'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if (session('error'))
+                                <div class="alert alert-danger" role="alert">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
+                             @if (isset($errors) && $errors->any())
+                                <div class="alert alert-danger" role="alert">
+                                   @foreach($errors->all() as $error)
+                  |  {{ $error }} 
+
+                @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
                      @yield('content')
 
                     
@@ -313,7 +338,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Plataforma UNHAUR 2023</span>
+                        <span>Nativo</span>
                     </div>
                 </div>
             </footer>
@@ -368,6 +393,7 @@
     <script src="/js/demo/chart-pie-demo.js"></script>
     <script src="/js/demo/chart-bar-demo.js"></script>
 
+@yield('script')
 </body>
 
 </html>

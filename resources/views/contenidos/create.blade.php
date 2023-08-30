@@ -15,12 +15,12 @@
                                 @csrf
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Título</label>
-                                <input class="form-control" name="titulo">
+                                <input class="form-control" required name="titulo">
                               </div>
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Formato</label>
-                                <select class="form-control" name="id_formato" required>
-                                    <option value=" ">Seleccione</option>
+                                <select class="form-control" id="id_formato" required name="id_formato" required>
+                                    <option value="">Seleccione</option>
                                     @foreach($formatos as $formato)
                                       <option value="{{ $formato->id }}">{{ $formato->nombre }}</option>
                                     @endforeach
@@ -31,7 +31,7 @@
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Subcategoría</label>
                                 <select class="form-control" name="id_subcategoria" required>
-                                    <option value=" ">Seleccione</option>
+                                    <option value="">Seleccione</option>
                                     @foreach($subcategorias as $subcategoria)
                                       <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
                                     @endforeach                                  
@@ -40,21 +40,23 @@
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Resumen</label>
-                                <textarea class="form-control" name="resumen"></textarea>
+                                <textarea class="form-control" required name="resumen"></textarea>
                               </div>
-                              <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Texto</label>
-                                <textarea class="form-control" name="texto"></textarea>
-                              </div>
+                              
                                <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Portada (imagen)</label>
-                                <input type="file" class="form-control" name="portada">
+                                <input type="file" required class="form-control" name="portada">
                               </div>
-                              <div class="mb-3">
+
+                              <div class="mb-3" id="contTexto">
+                                <label for="exampleInputEmail1" class="form-label" id="titTexto">Texto</label>
+                                <textarea class="form-control" name="texto"></textarea>
+                              </div>
+                              <div class="mb-3" id="contLink">
                                 <label for="exampleInputEmail1" class="form-label">Link</label>
                                 <input class="form-control" name="link">
                               </div>
-                               <div class="mb-3">
+                               <div class="mb-3" id="contArchivo">
                                 <label for="exampleInputEmail1" class="form-label">Archivo (pdf)</label>
                                 <input type="file" class="form-control" name="archivo">
                               </div>
@@ -62,7 +64,7 @@
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Nivel</label>
                                 <select class="form-control" name="id_nivel" required>
-                                    <option value=" ">Seleccione</option>
+                                    <option value="">Seleccione</option>
                                     @foreach($niveles as $nivel)
                                       <option value="{{ $subcategoria->id }}">{{ $nivel->nombre }}</option>
                                     @endforeach                                  
@@ -71,23 +73,44 @@
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Autorx</label>
-                                <select class="form-control" name="id_autor" required>
-                                    <option value=" ">Seleccione</option>
+                                <select required class="form-control" name="id_autor" required>
+                                    <option value="">Seleccione</option>
                                     @foreach($autorxs as $autorx)
-                                      <option value="{{ $autorx->id }}">{{ $autorx->nombre }}</option>
+                                      <option value="{{ $autorx->id }}">{{ $autorx->nombre }} {{ $autorx->apellido }}</option>
                                     @endforeach                                  
                                 </select>                                
                               </div>
 
                               <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Contribuyente</label>
-                                <select class="form-control" name="id_contribuyente" required>
-                                     <option value=" ">Seleccione</option>
+                                <select class="form-control" name="id_contribuyente" >
+                                     <option value="">Seleccione</option>
                                       @foreach($contribuyentxs as $contribuyente)
-                                      <option value="{{ $contribuyente->id }}">{{ $contribuyente->nombre }}</option>
+                                      <option value="{{ $contribuyente->id }}">{{ $contribuyente->nombre }} {{ $contribuyente->apellido }}</option>
                                     @endforeach                                  
                                 </select>                                
                               </div>
+
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Licencia</label>
+                                <select class="form-control" required name="id_licencia" >
+                                     <option value="">Seleccione</option>
+                                      @foreach($licencias as $licencia)
+                                      <option value="{{ $licencia->id }}">{{ $licencia->nombre }}</option>
+                                    @endforeach                                  
+                                </select>                                
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Etiquetas</label>
+                                    <div>
+                                      @foreach($etiquetas as $etiqueta)
+                                      {{ $etiqueta->nombre }} <input type="checkbox" name="etiquetas[]" value="{{ $etiqueta->id }}">  
+                                    @endforeach                                  
+                                </div>                        
+
+                              </div>
+
                              
                               
                               <button type="submit" class="btn btn-primary">Agregar</button>
@@ -99,5 +122,93 @@
 
                         
                     </div>
+
+@endsection
+
+@section('script')
+<script type="text/javascript">
+  
+  $("#contTexto").hide();
+  $("#contLink").hide();
+  $("#contArchivo").hide();
+
+  $('#id_formato').on('change', function(){
+
+  $value=$(this).val();
+
+  
+
+  if($value==1){//audiovisual
+   
+
+
+    $("#contTexto").show();
+   
+    $("#titTexto").html('Pegar el código para embeber </>  de Youtube');
+
+     $("#contLink").hide();
+     $("#contArchivo").hide();
+
+  }
+
+  if($value==2){//podcst
+   
+
+
+    $("#contTexto").show();
+   
+    $("#titTexto").html('Pegar el código para embeber </>  de Spotify');
+
+     $("#contLink").hide();
+     $("#contArchivo").hide();
+
+  }
+
+
+
+  if($value==3){//Archivo Pdf
+   
+
+
+    $("#contTexto").hide();
+   
+    //$("#titTexto").html('Pegar el código para embeber </>  de Youtube');
+
+     $("#contLink").hide();
+     $("#contArchivo").show();
+
+  }
+
+if($value==4){//texto
+   
+
+
+    $("#contTexto").show();
+   
+    $("#titTexto").html('Ingresá el texto completo');
+
+     $("#contLink").hide();
+     $("#contArchivo").hide();
+
+  }
+
+  if($value==5){//link web
+   
+
+
+    $("#contTexto").hide();
+   
+    $("#titTexto").html('Ingresá el texto completo');
+
+     $("#contLink").show();
+     $("#contArchivo").hide();
+
+  }
+
+
+
+
+});
+</script>
 
 @endsection

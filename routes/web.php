@@ -9,6 +9,8 @@ use App\Http\Controllers\AutorxController;
 use App\Http\Controllers\ContribuyenteController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\ContenidoController;
+use App\Http\Controllers\HomeController;
+
 
 
 /*
@@ -26,6 +28,11 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::get('/', [HomeController::class, 'index'])->name('inicio');
+
+
+
+
 Route::get('/clear-cache', function () {
    echo Artisan::call('config:clear');
    echo Artisan::call('config:cache');
@@ -33,10 +40,19 @@ Route::get('/clear-cache', function () {
    echo Artisan::call('route:clear');
 });
 
+Route::get('/ver_contenidos/{id_eje?}/{id_subcategoria?}/{id_nivel?}/{id_formato?}/{id_etiqueta?}/{id_autor?}/{id_contribuyente?}/{id_licencia?}', [ContenidoController::class, 'ver_contenidos'])->name('ver_contenidos');
+
+Route::get('/detalle_contenido/{id_contenido}/', [ContenidoController::class, 'detalleContenido'])->name('detalle_contenido');
+
+
+Route::get('/buscar_subcategoria/{id_eje}', [ContenidoController::class, 'buscarSubcategoria'])->name('buscar_subcategoria');
+
+
+
 Auth::routes();
 
-Route::get('/panel', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/panel', [ContenidoController::class, 'index'])->name('home');
+Route::get('/home', [ContenidoController::class, 'index'])->name('home');
 
 /*Contenidos*/
 Route::get('/contenidos', [ContenidoController::class, 'index'])->name('contenidos');
