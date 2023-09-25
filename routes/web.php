@@ -10,6 +10,7 @@ use App\Http\Controllers\ContribuyenteController;
 use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\ContenidoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NovedadController;
 
 
 
@@ -23,10 +24,10 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('inicio');
-});
+});*/
 
 Route::get('/', [HomeController::class, 'index'])->name('inicio');
 
@@ -48,6 +49,14 @@ Route::get('/detalle_contenido/{id_contenido}/', [ContenidoController::class, 'd
 Route::get('/buscar_subcategoria/{id_eje}', [ContenidoController::class, 'buscarSubcategoria'])->name('buscar_subcategoria');
 
 
+Route::get('/detalle_novedad/{id_novedad}/', [HomeController::class, 'detalleNovedad'])->name('detalle_novedad');
+
+Route::get('/comunidad/', [HomeController::class, 'comunidad'])->name('comunidad');
+Route::get('/contacto/', [HomeController::class, 'contacto'])->name('contacto');
+Route::post('/enviarMensaje', [HomeController::class, 'enviarMensaje'])->name('enviarMensaje');
+
+
+
 
 Auth::routes();
 
@@ -64,9 +73,18 @@ Route::get('borrarContenido/{contenido}', [ContenidoController::class, 'borrar']
 Route::delete('destroyContenido/{contenido}', [ContenidoController::class, 'destroy'])->name('destroyContenido');
 
 
+/*Comunidad*/
+Route::get('/novedades', [NovedadController::class, 'index'])->name('novedades');
+Route::get('/agregarNovedad', [NovedadController::class, 'create'])->name('agregarNovedad');
+Route::post('/grabarNovedad', [NovedadController::class, 'grabarNovedad'])->name('grabarNovedad');
+Route::get('showNovedad/{novedad}', [NovedadController::class, 'show'])->name('showNovedad');
+Route::match(['put', 'patch'],'editNovedad/{novedad}', [NovedadController::class, 'edit'])->name('editNovedad');
+Route::get('borrarNovedad/{novedad}', [NovedadController::class, 'borrar'])->name('borrarNovedad');
+Route::delete('destroyNovedad/{novedad}', [NovedadController::class, 'destroy'])->name('destroyNovedad');
+
 
 /*Ejes*/
-Route::get('/ejes', [EjeController::class, 'index'])->name('ejes');
+Route::get('/ejes', [Controller::class, 'index'])->name('ejes');
 Route::get('/agregarEje', [EjeController::class, 'create'])->name('agregarEje');
 Route::post('/grabarEje', [EjeController::class, 'grabarEje'])->name('grabarEje');
 Route::get('showEje/{eje}', [EjeController::class, 'show'])->name('showEje');

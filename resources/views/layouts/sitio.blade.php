@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,9 +27,9 @@
     <div id="app">
         <div class="container-fluid" style="position: relative; z-index:20">
             
-            <nav class="navbar navbar-expand-lg " >
+            <nav class="navbar navbar-expand-lg  bg-body-tertiary" >
               <div class="container-fluid">
-                <a class="navbar-brand"  href="/"><img width="200" src="/img/nativoPrueba.png" /></a>
+                <a class="navbar-brand"  href="/"><img class="logoNav" src="/img/nativoPrueba.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -44,10 +44,10 @@
                       <a class="nav-link" href="/ver_contenidos">CONTENIDOS</a>
                     </li>                    
                     <li class="nav-item">
-                      <a class="nav-link ">COMUNIDAD</a>
+                      <a class="nav-link " href="/comunidad">COMUNIDAD</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link ">CONTACTO</a>
+                      <a class="nav-link " href="/contacto">CONTACTO</a>
                     </li>
                   
                   <form class="d-flex" role="search">

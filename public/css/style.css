@@ -46,7 +46,8 @@ display:inline-block; padding: 0.1em 0.5em }
 .btn-vermas:hover{background-color: #fff; cursor: pointer;}
 .radius1{ border-radius: 40% 0 0 0 ;  }
 .colorazul{ color: #191834 !important }
-.comunidadTit{font-size: 1.3rem}
+.comunidadTit{font-size: 1.3rem;}
+.titNove{height: 70px; overflow: hidden; color:#191834; font-weight: bold;}
 .comunidadParrafo{line-height: 0.8rem; font-size: 0.7rem}
 .fdoTriang{background-image: url(/img/triangulos.PNG); background-repeat: no-repeat; background-position: center; background-color: #fff; }
 .radius2{border:2px solid #191834;  border-radius: 0 0 30% 0;  }
@@ -56,6 +57,7 @@ display:inline-block; padding: 0.1em 0.5em }
 .lineaArri{ margin-left: -25px}
 .titTarjetas{text-transform: uppercase; font-size: 19px; color: #191834}
 .lineaTur{margin-right: -25px}
+.lineaTurMovil{margin-right: -25px; display: none}
 .adorno1{position: absolute; top: 5%; left:60%; z-index: 10}
 .adorno1 img{width: 10%;}
 .adorno2{position: absolute; top: 20%; left:15%; z-index: 11}
@@ -67,3 +69,39 @@ display:inline-block; padding: 0.1em 0.5em }
 
 .piedePag{ width: 100%; position: relative; }
 .verMascon{ text-decoration: none ; }
+
+nav p{display: none}
+nav .px-4{display:none }
+.envianos{font-size: 23px}
+.btn-verfiltros{background-color: #0cc1b0; padding:5px 20px; cursor: pointer; border-radius: 5px; color: #fff}
+
+#filtrosMovilCont{display: none}
+.logoNav{width: 200px}
+#NovWeb{display: block;}
+#NovMov{display: none;}
+
+@media (max-width: 992px) {
+
+	.logoNav{width: 150px}
+
+ #FiltrosWeb{display: none}
+ #filtrosMovilCont{display: block}
+
+ #vistaPrevia .verMas{ margin-bottom: 15px }
+ .titPlatCont{ max-width: 100% }
+
+ .lineaTur{display: none}
+.lineaTurMovil{ display: block;   }
+.fondoInicio{ min-height: 445px; }
+.fSize45{font-size: 30px}
+
+.platCont{ position: absolute; top:42%; z-index: 10 }
+.CurvaAbajo{ position: absolute; bottom: 0; right: -30px }
+
+.fSize20{font-size: 14px}
+.fSize45{font-size: 23px}
+#NovWeb{display: none;}
+#NovMov{display: block;}
+.envianos{font-size: 17px}
+
+}

@@ -29,8 +29,18 @@
                                 
                               </div>
                               <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Eje</label>
+                                <select class="form-control" id="id_eje" name="id_eje" required>
+                                    <option value="">Seleccione</option>
+                                    @foreach($ejes as $eje)
+                                      <option value="{{ $eje->id }}">{{ $eje->nombre }}</option>
+                                    @endforeach                                  
+                                </select>                                
+                              </div>
+
+                              <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Subcategoría</label>
-                                <select class="form-control" name="id_subcategoria" required>
+                                <select class="form-control" name="id_subcategoria" id="id_subcategoria" required>
                                     <option value="">Seleccione</option>
                                     @foreach($subcategorias as $subcategoria)
                                       <option value="{{ $subcategoria->id }}">{{ $subcategoria->nombre }}</option>
@@ -50,7 +60,7 @@
 
                               <div class="mb-3" id="contTexto">
                                 <label for="exampleInputEmail1" class="form-label" id="titTexto">Texto</label>
-                                <textarea class="form-control" name="texto"></textarea>
+                                <textarea id="comment" class="form-control" name="texto"></textarea>
                               </div>
                               <div class="mb-3" id="contLink">
                                 <label for="exampleInputEmail1" class="form-label">Link</label>
@@ -66,7 +76,7 @@
                                 <select class="form-control" name="id_nivel" required>
                                     <option value="">Seleccione</option>
                                     @foreach($niveles as $nivel)
-                                      <option value="{{ $subcategoria->id }}">{{ $nivel->nombre }}</option>
+                                      <option value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
                                     @endforeach                                  
                                 </select>                                
                               </div>
@@ -144,7 +154,7 @@
 
     $("#contTexto").show();
    
-    $("#titTexto").html('Pegar el código para embeber </>  de Youtube');
+    $("#titTexto").html('Pegar el código para embeber HTML </>  de Youtube u otra plataforma');
 
      $("#contLink").hide();
      $("#contArchivo").hide();
@@ -157,7 +167,7 @@
 
     $("#contTexto").show();
    
-    $("#titTexto").html('Pegar el código para embeber </>  de Spotify');
+    $("#titTexto").html('Pegar el código para embeber HTML </> de Spotify u otra plataforma');
 
      $("#contLink").hide();
      $("#contArchivo").hide();
@@ -209,6 +219,31 @@ if($value==4){//texto
 
 
 });
+
+$('#id_eje').on('change', function(){
+
+
+  $value=$(this).val();
+    $.ajax({
+    type : 'get',
+    url : '{{URL::to('buscar_subcategoria')}}/'+$value,
+    //data:{'localidad':$value},
+    success:function(data){
+    $('#id_subcategoria').html(data);
+    }
+    });
+
+})
+</script>
+/*
+ $("#comment").on("keypress", function(event){
+
+
+    if($(this).val().length == 5){
+         return false;
+     }                
+});*/
+
 </script>
 
 @endsection

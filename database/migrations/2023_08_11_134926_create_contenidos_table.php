@@ -16,8 +16,8 @@ class CreateContenidosTable extends Migration
         Schema::create('contenidos', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('resumen');
-            $table->string('texto', 60000)->nullable();
+            $table->string('resumen', 4000);
+            $table->string('texto', 10000)->nullable();
             $table->string('portada');
             $table->string('link')->nullable();
             $table->string('archivo')->nullable();

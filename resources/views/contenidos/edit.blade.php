@@ -70,7 +70,7 @@
                                 <select class="form-control" name="id_nivel" required>
                                     <option value="">Seleccione</option>
                                     @foreach($niveles as $nivel)
-                                      <option  @if($contenido->id_nivel== $nivel->id) selected @endif value="{{ $subcategoria->id }}">{{ $nivel->nombre }}</option>
+                                      <option  @if($contenido->id_nivel== $nivel->id) selected @endif value="{{ $nivel->id }}">{{ $nivel->nombre }}</option>
                                     @endforeach                                  
                                 </select>                                
                               </div>

@@ -19,20 +19,21 @@
 			<div class="lqd-column col-md-4"
 						data-custom-animations="true"
 						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"2000", "delay":"160", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":30, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>			
-				<img class="lineaArri" src="/img/lineacelestearr.png" alt="Linea ornamental" />			
+				<img class="lineaArri" width="100%" src="/img/lineacelestearr.png" alt="Linea ornamental" />			
 			</div>
 		</div>
-		<div class="row">
+		<div class="row platCont">
 			<div class="col text-center lqd-column" 
 						data-custom-animations="true"
 						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "delay":"130", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":50, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>
 				<img class="titPlatCont" src="/img/plataformaContenidos.png" />
 			</div>
 		</div>
-		<div class="row" >
-			<div class="lqd-column col-3 offset-9 text-end" data-custom-animations="true"
+		<div class="row CurvaAbajo"  >
+			<div class="lqd-column col-lg-3 offset-lg-9   text-end" data-custom-animations="true"
 						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "delay":"130", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":50, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>			
-				<img width="100%" class="lineaTur" src="/img/lineaTurquesa.png" alt="Linea ornamental" />			
+				<img width="100%" class="lineaTur" src="/img/lineaTurquesa.png" alt="Linea ornamental" />
+				<img width="100%" class="lineaTurMovil" src="/img/lineaTurquesaMovil.png" alt="Linea ornamental" />			
 			</div>
 		</div>
 	</div>
@@ -56,8 +57,8 @@
 <div class="row ">
 	<div class="d-flex justify-content-between align-items-center bgAzul pt-3 pb-3 lqd-column" data-custom-animations="true"
 						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "delay":"130", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":50, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>
-		<div class=" fSize20">CONOCÉ TODOS LOS CONTENIDOS POR <span class="celeste">EJES TEMÁTICOS</span></div>
-		<div class="fontClimate fSize45"><span class="celeste"># </span>TEMAS</div>
+		<div class=" fSize20 col-sm-6">CONOCÉ TODOS LOS CONTENIDOS POR <span class="celeste">EJES TEMÁTICOS</span></div>
+		<div class="fontClimate fSize45 col-sm-36"><span class="celeste"># </span>TEMAS</div>
 	</div>
 </div>
 
@@ -66,21 +67,28 @@
 		class="row mt-5 mb-5 text-center"
 		data-custom-animations="true"
 		data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "initValues":{"translateY": 100, "opacity":0}, "animations":{"translateY": 0, "opacity":1}}'>
+		@php
+		$imagenTarjeta = "ejemplo1.png";
+		@endphp
 
 		@foreach($ejes as $eje)
 
 			<div class="lqd-column col-md-3 @switch($eje->nombre) 
 					@case('Biotecnología')
 			        	bgceleste
+			        	@php $imagenTarjeta = "biotecnologia.png"; @endphp
 			        @break 
 			        @case('Educación')
 			        	bgfucsia
+			        	@php $imagenTarjeta = "ejemplo1.png"; @endphp
 			        @break 
 			        @case('Tecnología e Ingeniería')
 			        	bgnaranja
+			        	@php $imagenTarjeta = "tecologia.png"; @endphp
 			        @break 
 			        @case('Salud Comunitaria')
 			        	bgturquesa
+			        	@php $imagenTarjeta = "salud.png"; @endphp
 			        @break  
 		        @endswitch">
 		        <h4 class="titTarjetas mt-4">{{ $eje->nombre }}</h4>
@@ -91,7 +99,7 @@
 				</div>
 				<div class="row">
 					<div class="col px-5 py-2">
-						<img width="100%" src="/img/ejemplo1.png" width="" />
+						<img width="100%" src="/img/{{ $imagenTarjeta }}" width="" />
 					</div>
 				</div>
 				<div class="row">
@@ -127,19 +135,30 @@
 	<div class="container">
 		<div class="row pt-4 " data-custom-animations="true"
 		data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "initValues":{"translateY": 100, "opacity":0}, "animations":{"translateY": 0, "opacity":1}}'>
-			<div class="col-4 offset-md-2  pt-4 pb-3  ">
+		@php $con=1; @endphp
+		@foreach($novedades as $novedad)
 
-				<img class="radius1" src="/img/imagenComunidad.jpg" width="100%" />
+			@php 
+				$resumen = substr($novedad->texto, 0, 400); 
+			@endphp
+			@if($con==1)
+			<div class="col-lg-4 offset-lg-2 col-md-8 pt-4 pb-3  ">
+
+				<img class="radius1" src="/img/comunidad/{{ $novedad->imagen }}" width="100%" />
 			</div>
-			<div class="col-5 pt-4 pb-3 colorazul">
-				<h3 class="comunidadTit">Contenido #2 título de hasta 3 líneas de extensión en Roboto bold 22 pts, interlínea 25 pts</h3>
-				<p>Bajada de hasta 6 líneas de extensión en
-				Roboto regular 18 pts #06053A, 20 pts de interlínea, alineación a la izquierda. Lorem
-				ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
-				tincidunt ut laoreet dolor. 
+			<div class="col-lg-5 col-md-8 pt-4 pb-3 colorazul">
+				<h3 class="comunidadTit">{{ $novedad->titulo }}</h3>
+				<p>{{ $resumen }}
 				</p>
-				<div class="btn-vermas">VER MÁS +</div>
+				<a href="/detalle_novedad/{{ $novedad->id }}"><div class="btn-vermas">VER MÁS +</div></a>
 			</div>
+			@endif
+			@php 
+			$con++;
+			@endphp
+		@endforeach	
+
+
 		</div>
 	</div>
 	<div class="row pt-4" >
@@ -149,58 +168,25 @@
 			<div class="fontClimate fSize45 colorazul"><span class="celeste"># </span>COMUNIDAD</div>
 		</div>
 	</div>
-	<div class="container">
+
+	<div class="container" id="NovWeb">
 		<div class="row pt-5" data-custom-animations="true"
 		data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1600", "delay":"160", "easing":"easeOutQuint", "initValues":{"translateY": 100, "opacity":0}, "animations":{"translateY": 0, "opacity":1}}'>
-			<div class="col p-2">
+		@php $con=1; @endphp
+		@foreach($novedades as $novedad)
+
+			@php 
+				$resumen = substr($novedad->texto, 0, 400); 
+			@endphp
+			@if($con!=1)
+
+			<div class="col">
 				<div class="radius2 py-2 pl-1 ">
 					<div class="row">
 						<div class="col">
-							<img  src="/img/comunidad1.png" width="100%" />
-							<p>Contenido #2 título de hasta 3 líneas de extensión en Roboto bold 22 pts, interlínea 25 pt</p>
-							<div class="btn-vermas">VER MÁS +</div>
-						</div>
-						<div class="col-2">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col p-2">
-				<div class="radius2 py-2 pl-1 ">
-					<div class="row">
-						<div class="col">
-							<img  src="/img/fotoCuadrada.jpg" width="100%" />
-							<p>Contenido #2 título de hasta 3 líneas de extensión en Roboto bold 22 pts, interlínea 25 pt</p>
-							<div class="btn-vermas">VER MÁS +</div>
-						</div>
-						<div class="col-2">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col p-2">
-				<div class="radius2 py-2 pl-1 ">
-					<div class="row">
-						<div class="col">
-							<img  src="/img/comunidad3.png" width="100%" />
-							<p>Contenido #2 título de hasta 3 líneas de extensión en Roboto bold 22 pts, interlínea 25 pt</p>
-							<div class="btn-vermas">VER MÁS +</div>
-						</div>
-						<div class="col-2">
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col p-2">
-				<div class="radius2 py-2 pl-1 ">
-					<div class="row">
-						<div class="col">
-							<img  src="/img/fotoCuadrada.jpg" width="100%" />
-							<p>Contenido #2 título de hasta 3 líneas de extensión en Roboto bold 22 pts, interlínea 25 pt</p>
-							<div class="btn-vermas">VER MÁS +</div>
+							<img  src="/img/comunidad/{{ $novedad->imagen }}" width="100%" />
+							<p class="titNove">{{ $novedad->titulo }}</p>
+							<a href="/detalle_novedad/{{ $novedad->id }}"><div class="btn-vermas">VER MÁS +</div></a>
 						</div>
 						<div class="col-2">
 							
@@ -209,8 +195,52 @@
 				</div>
 			</div>
 
+			@endif
+			@php 
+			$con++;
+			@endphp
+		@endforeach	
+
 		</div>
 	</div>
+
+	<div class="container" id="NovMov">
+		
+		@php $con=1; @endphp
+		@foreach($novedades as $novedad)
+
+			@php 
+				$resumen = substr($novedad->texto, 0, 400); 
+			@endphp
+			@if($con!=1)
+			<div class="row pt-5" >
+			<div class="col">
+				<div class="radius2 py-2 pl-1 ">
+					<div class="row">
+						<div class="col">
+							<img  src="/img/comunidad/{{ $novedad->imagen }}" width="100%" />
+							<p class="titNove">{{ $novedad->titulo }}</p>
+							<a href="/detalle_novedad/{{ $novedad->id }}"><div class="btn-vermas">VER MÁS +</div></a>
+						</div>
+						<div class="col-2">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+
+			@endif
+			@php 
+			$con++;
+			@endphp
+		@endforeach	
+		
+		
+	</div>
+
+
+
 
 	
 

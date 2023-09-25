@@ -33,6 +33,14 @@ class ContenidoController extends Controller
        $id_eje=(int)$request->id_eje;       
 
        $id_subcategoria=(int)$request->id_subcategoria;
+       $id_nivel=(int)$request->id_nivel;
+       $id_formato=(int)$request->id_formato;
+       $id_etiqueta=(int)$request->id_etiqueta;
+       $id_autor=(int)$request->id_autor;
+       $id_contribuyente=(int)$request->id_contribuyente;
+       $id_licencia=(int)$request->id_licencia;
+
+      //dd( $id_subcategoria);
 
 
         $contenidos= DB::table('contenidos')
@@ -47,7 +55,7 @@ class ContenidoController extends Controller
                     return $query->whereIn('contenidos.id_subcategoria', ( DB::table('subcategorias')->where('subcategorias.id_eje', $id_eje)->select('subcategorias.id_eje')->get() ));
                 })*/
         ->when($id_subcategoria, function($query, $id_subcategoria){
-                    return $query->where('contenidos.id_subcategoria','=', $id_subcategoria);
+                    return $query->where('contenidos.id_subcategoria', $id_subcategoria);
                 })
         ->when($id_nivel, function($query, $id_nivel){
                     return $query->where('contenidos.id_nivel','=', $id_nivel);
@@ -76,6 +84,7 @@ class ContenidoController extends Controller
             'autorxes.nombre as autorxNombre',
             'licencias.nombre as licenciaNombre',
             'contribuyentes.nombre as contribuyenteNombre')
+        ->orderBy('contenidos.created_at', 'DESC')
         ->paginate(7);
 
         
@@ -134,24 +143,24 @@ class ContenidoController extends Controller
        
 
         $subcategorias=DB::table('subcategorias')            
-            ->where('id_eje', $request->id_eje)->get();
-           
+            ->where('id_eje', $request->id_eje)->get();           
 
 
         if($request->ajax())
         {          
+
+
             
-            $output="";
-           // $id_serv=$request->id_servicioPenitenciario;
-            
-                
+            $output="<option value=''>+</option>";           
                     
-            $output.='<option value="">+</option>';
+            
 
             foreach($subcategorias as $subcat){
                 $output.='<option value="'.$subcat->id.'">'.$subcat->nombre.'</option>';
 
             }
+
+            
 
             
             return Response($output);
@@ -188,7 +197,8 @@ class ContenidoController extends Controller
             'autorxes.nombre as autorxNombre',
             'licencias.nombre as licenciaNombre',
             'contribuyentes.nombre as contribuyenteNombre')
-        ->get();
+        ->orderBy('contenidos.created_at', 'DESC')
+        ->paginate(8);
 
         
 
@@ -207,6 +217,7 @@ class ContenidoController extends Controller
     {
         return view("contenidos.create")->with([
            
+           'ejes'=>Eje::all(),
            'subcategorias'=>Subcategoria::all(),
            'niveles'=>Nivel::all(),
            'formatos'=>Formato::all(),
@@ -228,10 +239,12 @@ class ContenidoController extends Controller
     {
         
         $rules=[
-        'titulo'=>['required','max:300'], 
+        'titulo'=>['required','max:254'], 
+        'resumen'=>['required','max:10000'],
         'id_subcategoria'=>['required'],  
         'id_formato'=>['required'],     
-        'portada'=>['required'],  
+        'portada'=>['required'],
+        'link'=>['nullable', 'max:254'],
         'id_nivel'=>['required'],  
         'id_autor'=>['required'],  
          'archivo'=>['mimes:pdf', 'nullable']
@@ -340,12 +353,15 @@ class ContenidoController extends Controller
     public function edit($contenido)
     {
         $rules=[
-        'titulo'=>['required','max:300'], 
+        'titulo'=>['required','max:254'], 
+        'resumen'=>['required','max:10000'],
         'id_subcategoria'=>['required'],  
         'id_formato'=>['required'],     
-       
+        
+        'link'=>['nullable', 'max:254'],
         'id_nivel'=>['required'],  
         'id_autor'=>['required'],  
+         'archivo'=>['mimes:pdf', 'nullable']
         
         ];
         request()->validate($rules);

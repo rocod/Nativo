@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateEtiquetaRequest;
 use Illuminate\Http\Request;
 
 
+
 class EtiquetaController extends Controller
 {
     public function __construct()

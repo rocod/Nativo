@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eje;
+use App\Models\Novedad;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,53 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $novedades=Novedad::orderBy('created_at', 'DESC')->take(5)->get();
+       
        return view("inicio")->with([
             'ejes'=>Eje::all(),
+            'novedades'=>$novedades,
 
         ]);
+    }
+
+
+    public function detalleNovedad($id_novedad){
+
+         $novedades=Novedad::orderBy('created_at', 'DESC')->take(5)->get();
+
+        return view("detalleNovedad")->with([
+            'novedad'=>Novedad::findOrFail($id_novedad),
+            'novedades'=>$novedades,
+
+        ]);
+    }
+
+
+    public function comunidad(){
+
+         $novedades=Novedad::orderBy('created_at', 'DESC')
+         ->orderBy('novedads.created_at', 'DESC')
+         ->paginate(9);
+
+        return view("comunidad")->with([
+      
+            'novedades'=>$novedades,
+
+        ]);
+    }
+
+
+ public function contacto(){
+
+        
+        return view("contacto");
+    }
+
+    public function enviarMensaje(Request $request){
+
+         session()->flash('success', 'El mensaje fue enviado con éxito');
+
+          return view("contacto");
     }
 }

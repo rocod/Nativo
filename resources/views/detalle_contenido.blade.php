@@ -32,11 +32,13 @@
 					<p>{{ $contenido->resumen}}</p>
 				</div>
 			</div>
+			@if($contenido->id_formato==3 || $contenido->id_formato==4 || $contenido->id_formato==5 )
 			<div class="row">
 				<div class="col">
 					<img width="100%" src="/img/portada/{{ $contenido->portada}}" />
 				</div>
 			</div>
+			@endif
 			<div class="row mt-4 mb-4">
 				<div class="col">
 					 @switch($contenido->id_formato) 
@@ -50,7 +52,7 @@
 			        	<a class="btn btn-primary" target="_blank" href="/storage/uploads/{{ $contenido->archivo }}" role="button">Descargar archivo</a>
 			        @break 
 			       @case(4)
-			        	{{ $contenido->texto }} 
+			        	{!! nl2br($contenido->texto) !!}
 			        @break  
 			        @case(5)
 			        	<a class="btn btn-primary" target="_blank" href="{{ $contenido->link }} " role="button">Click aquí para acceder</a> 
