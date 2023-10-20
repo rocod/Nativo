@@ -43,17 +43,19 @@ class ContenidoController extends Controller
       //dd( $id_subcategoria);
 
 
+
         $contenidos= DB::table('contenidos')
         ->LeftJoin('subcategorias' ,'contenidos.id_subcategoria', 'subcategorias.id')
+        ->LeftJoin('ejes', 'subcategorias.id_eje' , 'ejes.id')
         ->LeftJoin('nivels' ,'contenidos.id_nivel', 'nivels.id')
         ->LeftJoin('formatos' ,'contenidos.id_formato', 'formatos.id')
        
         ->LeftJoin('autorxes' ,'contenidos.id_autor', 'autorxes.id')
         ->LeftJoin('licencias' ,'contenidos.id_licencia', 'licencias.id')
         ->LeftJoin('contribuyentes' ,'contenidos.id_contribuyente', 'contribuyentes.id')
-       /* ->when($id_eje, function($query, $id_eje){
-                    return $query->whereIn('contenidos.id_subcategoria', ( DB::table('subcategorias')->where('subcategorias.id_eje', $id_eje)->select('subcategorias.id_eje')->get() ));
-                })*/
+        ->when($id_eje, function($query, $id_eje){
+                    return $query->where('subcategorias.id_eje', $id_eje);
+                })
         ->when($id_subcategoria, function($query, $id_subcategoria){
                     return $query->where('contenidos.id_subcategoria', $id_subcategoria);
                 })

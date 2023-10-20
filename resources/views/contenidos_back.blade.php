@@ -9,7 +9,8 @@
 		
     </div>
     <div class="row  ">
-    	<div class="d-flex justify-content-between align-items-center bgAzul pt-3 pb-3" >
+    	<div class="d-flex justify-content-between align-items-center bgAzul pt-3 pb-3 lqd-column" data-custom-animations="true"
+						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "delay":"130", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":50, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>
 	    	<div class=" fSize20">CONOCÉ TODOS LOS CONTENIDOS POR <span class="celeste">EJES TEMÁTICOS</span></div>
 	    	<div class="fontClimate fSize45"><span class="celeste"># </span>TEMAS</div>
 	    </div>
@@ -26,7 +27,7 @@
                    <form action="/ver_contenidos" method="get">
 
 					<h2 class="itemFiltro pt-4">Ejes</h2>
-					<select name="id_eje" id="id_eje" class="form-select form-select-lg mb-3 ejex" aria-label="Large select example">
+					<select name="id_eje" id="id_eje" class="form-select form-select-lg mb-3" aria-label="Large select example">
 					<option value="">+</option>	
 					@foreach($ejes as $eje)				  
 					  <option @if(isset($_GET['id_eje']) && $_GET['id_eje']==$eje->id) selected @endif value="{{ $eje->id }}">{{ $eje->nombre }}</option>
@@ -97,7 +98,7 @@
 
 
 	<div class="container">
-			<div class="row azul" id="filtros2">
+			<div class="row azul" id="filtros">
 				<div id="FiltrosWeb" class="col-3 bgCeleste px-5 pt-5 pb-5">
 					<h3 class="filtros">FILTROS DE BÚSQUEDA</h3>
 					<form action="/ver_contenidos" method="get">
@@ -111,7 +112,7 @@
 					</select>
 					<hr  />
 					<h2 class="itemFiltro pt-2">Subcategorías</h2>
-					<select name="id_subcategoria" id="id_subcategoria2" class="form-select form-select-lg mb-3" aria-label="Large select example">
+					<select name="id_subcategoria" id="id_subcategoria" class="form-select form-select-lg mb-3" aria-label="Large select example">
 					<option value="">+</option>	
 					
 					</select>
@@ -171,7 +172,8 @@
 					
 					@foreach($contenidos as $contenido)
 					<div class="row p-3 ">						
-						  <div class="row unaVista"	>
+						  <div class="row unaVista lqd-column" data-custom-animations="true"
+						data-ca-options='{"triggerHandler":"inview", "animationTarget":"all-childs", "duration":"1200", "delay":"130", "easing":"easeOutQuint", "direction":"forward", "initValues":{"translateY":50, "opacity":0}, "animations":{"translateY":0, "opacity":1}}'>
 						    <div class="col-md-3 justify-content-center pb-2" style="overflow: hidden;">
 						      <img height="120" src="/img/portada/{{ $contenido->portada }}"   alt="titulo de la noticia">
 						    </div>
@@ -210,31 +212,23 @@
 <script type="text/javascript">
 
 
+$('#id_eje').on('change', function(){
 
-$("#id_eje2").change(function(){
-
-	
+	alert('hola');
 
   $value=$(this).val();
-
-
     $.ajax({
     type : 'get',
     url : '{{URL::to('buscar_subcategoria')}}/'+$value,
     //data:{'localidad':$value},
     success:function(data){
-    $('#id_subcategoria2').html(data);
+    $('#id_subcategoria').html(data);
     }
     });
 
-
-
-    
-
 })
 
-
-$('#id_eje').change(function(){
+$('#id_eje2').on('change', function(){
 
 
   $value=$(this).val();

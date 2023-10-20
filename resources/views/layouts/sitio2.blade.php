@@ -86,9 +86,7 @@
     </div>
 
 <script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/js/code.jquery.com_ui_1.13.1_jquery-ui.js"></script>
-<script src="/js/theme-vendors.js"></script>
-<script src="/js/theme.min.js"></script>
+
 
 @yield('script')
 </body>

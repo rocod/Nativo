@@ -26,10 +26,12 @@ body{background-color: #f2f2f2;}
 .filtros{ font-size:14px; color: #06053a;  letter-spacing: 2px}
 .itemFiltro{}
 .azul{ color: #06053a;}
-#filtros .list-group-item{background-color:#8cddbc; border-color:#06053a; }
-#filtros .list-group-item a{text-decoration: none; color: #06053a}
-#filtros .list-group-item a:hover{text-decoration: underline}
-#filtros .list-group-item i{font-size: 20px}
+#filtros .list-group-item, #filtros2 .list-group-item{background-color:#8cddbc; border-color:#06053a; }
+#filtros .list-group-item a, #filtros2 .list-group-item a{text-decoration: none; color: #06053a}
+#filtros .list-group-item a:hover, #filtros2 .list-group-item a:hover{text-decoration: underline}
+#filtros .list-group-item i, #filtros2 .list-group-item i{font-size: 20px}
+
+
 
 #vistaPrevia .card-title{color: #079dd8;}
 #vistaPrevia .card-text{color:#06053a; font-size: 13px; }
@@ -40,6 +42,7 @@ body{background-color: #f2f2f2;}
 .bgfucsia{background-color:#e71c5f;}
 .bgnaranja{background-color:#f28f2d;}
 .bgturquesa{background-color:#26b5a8;}
+.bgverde{background-color:#8dc044;}
 .ejesInicio{color:#191834; text-align: center}
 .btn-vermas{ border:2px  #191834 solid; border-radius:10px; color: #191834; font-weight: bold;
 display:inline-block; padding: 0.1em 0.5em }
@@ -66,8 +69,12 @@ display:inline-block; padding: 0.1em 0.5em }
 .adorno3 img{width: 15%;}
 .adorno4{position: absolute; top: 50%; left:70%; z-index: 13}
 .adorno4 img{width: 20%;}
-
-.piedePag{ width: 100%; position: relative; }
+.botonesPie{color: #fff; border-radius: 10px; font-weight: bold; padding: 10px 30px }
+.bgcelestef{ background-color: #2babe3 }
+.piedePag{ width: 100%; position: relative; 
+	background-image: url(/img/piedepag.png); 
+	background-repeat: no-repeat; background-size: cover;
+padding: 30px 5px; padding-top: 250px; min-height: 400px }
 .verMascon{ text-decoration: none ; }
 
 nav p{display: none}
@@ -79,6 +86,10 @@ nav .px-4{display:none }
 .logoNav{width: 200px}
 #NovWeb{display: block;}
 #NovMov{display: none;}
+
+.mostrarMovil{display: none;}
+.mostrarWeb{display: block;}
+
 
 @media (max-width: 992px) {
 
@@ -103,5 +114,8 @@ nav .px-4{display:none }
 #NovWeb{display: none;}
 #NovMov{display: block;}
 .envianos{font-size: 17px}
+
+.mostrarMovil{display: block;}
+.mostrarWeb{display: none;}
 
 }
