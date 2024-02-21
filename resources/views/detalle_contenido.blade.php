@@ -4,9 +4,6 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        
-
-		
     </div>
     <div class="row  ">
     	<div class="d-flex justify-content-between align-items-center bgAzul pt-3 pb-3">
@@ -19,7 +16,7 @@
 			<div class="row azul" id="filtros">
 
 				<div  class="col-12 pt-3 pb-5 ">
-					<a onclick="history.back()">VOLVER A FILTROS </a>
+					<a class="pointer" onclick="history.back()">VOLVER A FILTROS </a>
 				</div>
 			</div>
 			<div class="row">
@@ -34,8 +31,8 @@
 			</div>
 			@if($contenido->id_formato==3 || $contenido->id_formato==4 || $contenido->id_formato==5 )
 			<div class="row">
-				<div class="col">
-					<img width="100%" src="/img/portada/{{ $contenido->portada}}" />
+				<div class="col text-center">
+					<img width="60%" src="/img/portada/{{ $contenido->portada}}" />
 				</div>
 			</div>
 			@endif
@@ -43,7 +40,11 @@
 				<div class="col">
 					 @switch($contenido->id_formato) 
 					@case(1)
-			        	{!! $contenido->texto !!} 
+
+						@php
+							$video=substr_replace($contenido->texto, ' class="videoCont" ', 8 , 25);
+						@endphp
+			        	<div class="d-flex justify-content-center">{!! $video !!}</div>
 			        @break 
 			        @case(2)
 			        	{!! $contenido->texto !!} 
@@ -58,6 +59,27 @@
 			        	<a class="btn btn-primary" target="_blank" href="{{ $contenido->link }} " role="button">Click aquí para acceder</a> 
 			        @break
 		        @endswitch
+				</div>
+			</div>
+			<div class="row border rounded p-3 border-secondary bggris"><!--ficha-->
+				<div class="col p-2">
+					<h3>Ficha</h3>
+					<p>Publicado: {{ $contenido->created_at }}</p>
+					<p>Última modificación: {{ $contenido->updated_at }}</p>
+					<div><h4>Eje:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->ejeNombre }}</span></div>
+				</div>
+				<div class="col  p-2">
+					<div  class="pb-1 mb-2"><h4>Subcategoría:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->subcategoriaNombre }}</span></div>
+					<div  class="pb-1 mb-2"><h4>Nivel:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->nivelNombre }}</span></div>
+					<div  class="pb-1 mb-2"><h4>Formato:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->formatoNombre }}</span></div>
+
+				</div>
+				<div class="col  p-2">
+					<div class="pb-1 mb-2"><h4>Autor:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->autorxNombre  }} {{ $contenido->autorxApellido }}</span></div>
+					@if($contenido->contribuyenteNombre)
+					<div class="pb-1 mb-2"><h4>Contribuyente:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->contribuyenteNombre }} {{ $contenido->contribuyenteApellido }}</span></div>
+					@endif
+					<div class="pb-1 mb-2"><h4>Licencia:</h4> <span class="border rounded p-1 text-bg-secondary">{{ $contenido->licenciaNombre }}</span></div>
 				</div>
 			</div>
 	</div>

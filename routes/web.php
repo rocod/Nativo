@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\EjeController;
 use App\Http\Controllers\SubcategoriaController;
 use App\Http\Controllers\NivelController;
@@ -11,7 +12,7 @@ use App\Http\Controllers\LicenciaController;
 use App\Http\Controllers\ContenidoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NovedadController;
-
+use App\Http\Controllers\Controller;
 
 
 /*
@@ -48,6 +49,8 @@ Route::get('/detalle_contenido/{id_contenido}/', [ContenidoController::class, 'd
 
 Route::get('/buscar_subcategoria/{id_eje}', [ContenidoController::class, 'buscarSubcategoria'])->name('buscar_subcategoria');
 
+Route::get('/buscar_subcategoria_web/{id_eje}', [ContenidoController::class, 'buscarSubcategoriaWeb'])->name('buscar_subcategoria_web');
+
 
 Route::get('/detalle_novedad/{id_novedad}/', [HomeController::class, 'detalleNovedad'])->name('detalle_novedad');
 
@@ -83,8 +86,17 @@ Route::get('borrarNovedad/{novedad}', [NovedadController::class, 'borrar'])->nam
 Route::delete('destroyNovedad/{novedad}', [NovedadController::class, 'destroy'])->name('destroyNovedad');
 
 
+/*Slide*/
+Route::get('/slider', [SlideController::class, 'index'])->name('slider');
+Route::get('/agregarSlide', [SlideController::class, 'create'])->name('agregarSlide');
+Route::post('/grabarSlide', [SlideController::class, 'grabarSlide'])->name('grabarSlide');
+
+Route::get('borrarSlide/{slide}', [SlideController::class, 'borrar'])->name('borrarSlide');
+Route::delete('destroySlide/{slide}', [SlideController::class, 'destroy'])->name('destroySlide');
+
+
 /*Ejes*/
-Route::get('/ejes', [Controller::class, 'index'])->name('ejes');
+Route::get('/ejes', [EjeController::class, 'index'])->name('ejes');
 Route::get('/agregarEje', [EjeController::class, 'create'])->name('agregarEje');
 Route::post('/grabarEje', [EjeController::class, 'grabarEje'])->name('grabarEje');
 Route::get('showEje/{eje}', [EjeController::class, 'show'])->name('showEje');
@@ -147,5 +159,6 @@ Route::get('showLicencia/{licencia}', [LicenciaController::class, 'show'])->name
 Route::match(['put', 'patch'],'editLicencia/{licencia}', [LicenciaController::class, 'edit'])->name('editLicencia');
 Route::get('borrarLicencia/{licencia}', [LicenciaController::class, 'borrar'])->name('borrarLicencia');
 Route::delete('destroyLicencia/{licencia}', [LicenciaController::class, 'destroy'])->name('destroyLicencia');
+Auth::routes();
 
 

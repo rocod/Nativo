@@ -6,10 +6,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Nativo es la plataforma de contenidos educativos de la UNAHUR, está orientada a docentes de esta y otras instituciones">
+    <meta name="author" content="UNAHUR">
+    <link rel="icon" href="/img/favicon.png" type="image/gif" />
 
-    <title>Administración de Contenidos</title>
+    <title>Nativo - Administración de Contenidos</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,7 +33,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="pt-2 pb-2 d-flex align-items-center justify-content-center" href="/home">
-                <img src="/img/UdeUsina.png" width="60%" />
+                <img src="/img/LogoN.png" width="60%" />
                 <div class="sidebar-brand-text mx-3"></div>
             </a>
 
@@ -40,6 +41,22 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Slider"
+                    aria-expanded="true" aria-controls="Slider">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Imagenes Carrousel</span>
+                </a>
+                <div id="Slider" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Acciones:</h6>
+                        <a class="collapse-item" href="/slider">Ver todos  <i class="fas fa-fw fa-pen"></i></a>
+                        
+                    </div>
+                </div>
+            </li>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Comunidad"
@@ -226,6 +243,7 @@
                     </button>
 
                     <!-- Topbar Search -->
+                    <!--
                     <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -237,7 +255,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form>-->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -284,10 +302,10 @@
 
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <!--<a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Mi perfil
-                                </a>
+                                </a>-->
                                
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}"

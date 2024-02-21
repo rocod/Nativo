@@ -35,7 +35,15 @@
 					<hr  />
 					<h2 class="itemFiltro pt-2">Subcategorías</h2>
 					<select name="id_subcategoria" id="id_subcategoria" class="form-select form-select-lg mb-3" aria-label="Large select example">
+
 					<option value="">+</option>	
+					@if($subcategorias)
+
+						@foreach($subcategorias as $sub)
+							<option @if(isset($_GET['id_subcategoria']) && $_GET['id_subcategoria']==$sub->id) selected @endif value="{{ $sub->id }}">{{ $sub->nombre }}</option>
+						@endforeach
+
+					@endif
 					
 					</select>
 					<hr  />
@@ -54,14 +62,7 @@
 					  <option @if(isset($_GET['id_formato']) && $_GET['id_formato']==$formato->id) selected @endif value="{{ $formato->id }}">{{ $formato->nombre }}</option>
 					 @endforeach
 					</select>
-					<hr  />
-					<h2 class="itemFiltro pt-2">Etiquetas</h2>
-					<select name="id_etiqueta" class="form-select form-select-lg mb-3" aria-label="Large select example">
-					<option value="">+</option>	
-					@foreach($etiquetas as $etiqueta)				  
-					  <option @if(isset($_GET['id_etiqueta']) && $_GET['id_etiqueta']==$etiqueta->id) selected @endif value="{{ $etiqueta->id }}">{{ $etiqueta->nombre }}</option>
-					 @endforeach
-					</select>
+					
 					<hr  />
 					<h2 class="itemFiltro pt-2">Autorxs (apellido)</h2>
 					<select name="id_autor" class="form-select form-select-lg mb-3" aria-label="Large select example">
@@ -113,6 +114,13 @@
 					<h2 class="itemFiltro pt-2">Subcategorías</h2>
 					<select name="id_subcategoria" id="id_subcategoria2" class="form-select form-select-lg mb-3" aria-label="Large select example">
 					<option value="">+</option>	
+					@if($subcategorias)
+
+						@foreach($subcategorias as $sub)
+							<option @if(isset($_GET['id_subcategoria']) && $_GET['id_subcategoria']==$sub->id) selected @endif value="{{ $sub->id }}">{{ $sub->nombre }}</option>
+						@endforeach
+
+					@endif
 					
 					</select>
 					<hr  />
@@ -131,14 +139,7 @@
 					  <option @if(isset($_GET['id_formato']) && $_GET['id_formato']==$formato->id) selected @endif value="{{ $formato->id }}">{{ $formato->nombre }}</option>
 					 @endforeach
 					</select>
-					<hr  />
-					<h2 class="itemFiltro pt-2">Etiquetas</h2>
-					<select name="id_etiqueta" class="form-select form-select-lg mb-3" aria-label="Large select example">
-					<option value="">+</option>	
-					@foreach($etiquetas as $etiqueta)				  
-					  <option @if(isset($_GET['id_etiqueta']) && $_GET['id_etiqueta']==$etiqueta->id) selected @endif value="{{ $etiqueta->id }}">{{ $etiqueta->nombre }}</option>
-					 @endforeach
-					</select>
+					
 					<hr  />
 					<h2 class="itemFiltro pt-2">Autorxs (apellido)</h2>
 					<select name="id_autor" class="form-select form-select-lg mb-3" aria-label="Large select example">
@@ -172,12 +173,12 @@
 					@foreach($contenidos as $contenido)
 					<div class="row p-3 ">						
 						  <div class="row unaVista"	>
-						    <div class="col-md-3 justify-content-center pb-2" style="overflow: hidden;">
-						      <img height="120" src="/img/portada/{{ $contenido->portada }}"   alt="titulo de la noticia">
+						    <div class="col-md-3 justify-content-center pb-2" >
+						      <img height="120" src="/img/portada/{{ $contenido->portada }}"   alt="{{ $contenido->titulo }}">
 						    </div>
 						    <div class="col-md-7 pb-3" >
 						      <div class="card-body">
-						        <h5 class="card-title">{{ $contenido->titulo }}</h5>
+						        <h5 class="card-title"><a class="verMascon" href="/detalle_contenido/{{ $contenido->id }}">{{ $contenido->titulo }}</a></h5>
 						        <p class="card-text">{{ $contenido->resumen }}</p>
 						       
 						      </div>
@@ -193,7 +194,15 @@
 					
 					<div class="row"> 
 						<div class="col text-center">
-							{{ $contenidos->links() }}
+							{{ $contenidos->appends(["busqueda" => $busqueda, "id_eje" => $id_eje,
+							"id_subcategoria" => $id_subcategoria,
+							"id_nivel" => $id_nivel,
+							"id_formato" => $id_formato,
+							"id_autor" => $id_autor,
+							"id_contribuyente" => $id_contribuyente,
+							"id_licencia" => $id_licencia,
+
+							])->links() }}
 						</div>
 					</div>
 
@@ -220,7 +229,7 @@ $("#id_eje2").change(function(){
 
     $.ajax({
     type : 'get',
-    url : '{{URL::to('buscar_subcategoria')}}/'+$value,
+    url : '{{URL::to('buscar_subcategoria_web')}}/'+$value,
     //data:{'localidad':$value},
     success:function(data){
     $('#id_subcategoria2').html(data);
@@ -240,7 +249,7 @@ $('#id_eje').change(function(){
   $value=$(this).val();
     $.ajax({
     type : 'get',
-    url : '{{URL::to('buscar_subcategoria')}}/'+$value,
+    url : '{{URL::to('buscar_subcategoria_web')}}/'+$value,
     //data:{'localidad':$value},
     success:function(data){
     $('#id_subcategoria').html(data);

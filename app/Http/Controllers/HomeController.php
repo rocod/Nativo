@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Eje;
 use App\Models\Novedad;
+use App\Models\Contenido;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -26,11 +28,17 @@ class HomeController extends Controller
     public function index()
     {
 
-        $novedades=Novedad::orderBy('created_at', 'DESC')->take(5)->get();
+        $novedades=Novedad::orderBy('created_at', 'DESC')->take(4)->get();
+
+         $slides=DB::table('slide')       
+        ->take(5)->get();
        
-       return view("inicio")->with([
+        return view("inicio")->with([
             'ejes'=>Eje::all(),
             'novedades'=>$novedades,
+            'contenido'=>Contenido::orderBy('created_at', 'desc')->first(),
+            'slides'=>$slides,
+
 
         ]);
     }

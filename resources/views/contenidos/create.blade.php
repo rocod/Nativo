@@ -54,7 +54,7 @@
                               </div>
                               
                                <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Portada (imagen)</label>
+                                <label for="exampleInputEmail1" class="form-label">Portada (imagen) 1050 x 700 pixeles</label>
                                 <input type="file" required class="form-control" name="portada">
                               </div>
 
@@ -234,16 +234,6 @@ $('#id_eje').on('change', function(){
     });
 
 })
-</script>
-/*
- $("#comment").on("keypress", function(event){
-
-
-    if($(this).val().length == 5){
-         return false;
-     }                
-});*/
-
 </script>
 
 @endsection

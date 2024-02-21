@@ -19,7 +19,7 @@
                               </div>
                              
                                <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Imagen</label>
+                                <label for="exampleInputEmail1" class="form-label">Imagen 800 x 650 píxeles</label>
                                 <input type="file" required class="form-control" name="imagen">
                               </div>
 

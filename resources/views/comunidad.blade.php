@@ -2,16 +2,7 @@
 
 @section('content')
 
-<div class="lqd-particles-bg-wrap" style="position: absolute; top:30%; width: 100%; height: 100%; z-index: 5">
-	<div class="ld-particles-container">
-		<div
-		class="ld-particles-inner"
-		id="particles-1559739661542-e9d04c39-a9eb"
-		data-particles="true"
-		data-particles-options='{"particles":{"number":{"value":4}, "color":{"value":["#f9ad9b", "#079dd8", "#fc9127"]}, "shape":{"type":["circle"]}, "opacity":{"random":true, "anim":{"enable":true, "opacity_min":0.80000000000000004, "speed":1, "sync":true}}, "size":{"value":6, "random":true, "anim":{"enable":true, "size_min":52}}, "move":{"enable":true, "direction":"none", "speed":1, "random":true, "out_mode":"out"}}, "interactivity":[]}'>
-		</div><!-- /.ld-particles-inner -->
-	</div><!-- /.ld-particles-container -->
-</div><!-- /.lqd-particles-bg-wrap -->
+
 
 
 <div class="row ">

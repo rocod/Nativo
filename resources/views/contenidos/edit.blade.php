@@ -51,7 +51,7 @@
 
                               </div>
                                <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Portada (imagen)</label>
+                                <label for="exampleInputEmail1" class="form-label">Portada (imagen) 1050 x 700 píxeles</label>
                                 <img width="100" src="/img/portada/{{ $contenido->portada }}" />
                                 <input type="file"  class="form-control" name="portada">
                               </div>

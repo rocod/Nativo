@@ -20,7 +20,7 @@
                       </div>
                              
                        <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label">Imagen</label>
+                        <label for="exampleInputEmail1" class="form-label">Imagen 800 x 650 píxeles</label>
                         <img width="100" src="/img/comunidad/{{ $novedad->imagen }}" />
                         <input type="file"  class="form-control" name="imagen">
                       </div>

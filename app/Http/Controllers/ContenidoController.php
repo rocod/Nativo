@@ -23,14 +23,28 @@ class ContenidoController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['ver_contenidos', 'buscarSubcategoria', 'detalleContenido']);
+        $this->middleware('auth')->except(['ver_contenidos', 'buscarSubcategoria', 'buscarSubcategoriaWeb', 'detalleContenido']);
     }
 
 
     public function ver_contenidos(Request $request, $id_eje=0, $id_subcategoria=0, $id_nivel=0, $id_formato=0, $id_etiqueta=0, $id_autor=0, $id_contribuyente=0, $id_licencia=0)
     {
 
-       $id_eje=(int)$request->id_eje;       
+       $id_eje=(int)$request->id_eje;
+
+       if($id_eje!=0){
+        $subcategorias=DB::table('subcategorias')
+        ->where('id_eje', $id_eje)      
+        ->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                     ->from('contenidos')
+                     ->whereColumn('contenidos.id_subcategoria', 'subcategorias.id');
+        })                
+        ->get();
+
+       }else{
+        $subcategorias=array();
+       }       
 
        $id_subcategoria=(int)$request->id_subcategoria;
        $id_nivel=(int)$request->id_nivel;
@@ -40,7 +54,17 @@ class ContenidoController extends Controller
        $id_contribuyente=(int)$request->id_contribuyente;
        $id_licencia=(int)$request->id_licencia;
 
-      //dd( $id_subcategoria);
+       if($request->busqueda!=""){
+
+       $busqueda=$request->busqueda;
+
+   }else{
+
+        $busqueda=0;
+   }
+
+       
+
 
 
 
@@ -56,18 +80,16 @@ class ContenidoController extends Controller
         ->when($id_eje, function($query, $id_eje){
                     return $query->where('subcategorias.id_eje', $id_eje);
                 })
-        ->when($id_subcategoria, function($query, $id_subcategoria){
+       ->when($id_subcategoria, function($query, $id_subcategoria){
                     return $query->where('contenidos.id_subcategoria', $id_subcategoria);
                 })
-        ->when($id_nivel, function($query, $id_nivel){
+       ->when($id_nivel, function($query, $id_nivel){
                     return $query->where('contenidos.id_nivel','=', $id_nivel);
                 })
         ->when($id_formato, function($query, $id_formato){
                     return $query->where('contenidos.id_formato','=', $id_formato);
                 })
-        ->when($id_etiqueta, function($query, $id_etiqueta){
-                    return $query->where('contenidos.id_etiqueta','=', $id_etiqueta);
-                })
+       
         ->when($id_autor, function($query, $id_autor){
                     return $query->where('contenidos.id_autor','=', $id_autor);
                 })
@@ -77,6 +99,17 @@ class ContenidoController extends Controller
         ->when($id_licencia, function($query, $id_licencia){
                     return $query->where('contenidos.id_licencia','=', $id_licencia);
                 })
+
+        ->when($busqueda, function($query, $busqueda){
+                    return $query->where('contenidos.titulo','like', '%'.$busqueda.'%')->orWhere('contenidos.resumen','like', '%'.$busqueda.'%')
+                    ->orWhereIn('contenidos.id', function($query) use ($busqueda) {
+                  $query->select('contenido_etiqueta.id_contenido')
+                        ->from('contenido_etiqueta')
+                        ->leftJoin('etiquetas', 'contenido_etiqueta.id_etiqueta', 'etiquetas.id')
+                        ->where('etiquetas.nombre', 'like', '%'.$busqueda.'%');
+             } );
+                })
+       
 
         ->select('contenidos.*',
             'subcategorias.nombre as subcategoriaNombre',
@@ -89,21 +122,29 @@ class ContenidoController extends Controller
         ->orderBy('contenidos.created_at', 'DESC')
         ->paginate(7);
 
+
+    
         
 
         return view("contenidos")->with([
             'contenidos'=>$contenidos,
             'ejes'=>Eje::all(),
-            'subcategorias'=>Subcategoria::all(),
+            'subcategorias'=>$subcategorias,
             'niveles'=>Nivel::all(),
             'formatos'=>Formato::all(),
             'etiquetas'=>Etiqueta::all(),
             'autorxs'=>Autorx::all(),
             'contribuyentxs'=>Contribuyente::all(),
             'licencias'=>Licencia::all(),
-
-        ]);
-         
+            'busqueda'=>$busqueda,
+            'id_eje'=>$id_eje,
+            'id_subcategoria'=>$id_subcategoria,
+            'id_nivel' =>$id_nivel,
+            'id_formato'=>$id_formato,
+            'id_autor'=>$id_autor,
+            'id_contribuyente'=>$id_contribuyente,
+            'id_licencia'=>$id_licencia,
+        ]);        
 
 
     }
@@ -118,19 +159,25 @@ class ContenidoController extends Controller
         ->LeftJoin('autorxes' ,'contenidos.id_autor', 'autorxes.id')
         ->LeftJoin('licencias' ,'contenidos.id_licencia', 'licencias.id')
         ->LeftJoin('contribuyentes' ,'contenidos.id_contribuyente', 'contribuyentes.id')
+        ->LeftJoin('ejes', 'subcategorias.id_eje', 'ejes.id')
         ->where('contenidos.id', $id_contenido)
         ->select('contenidos.*',
+            'ejes.nombre as ejeNombre',
             'subcategorias.nombre as subcategoriaNombre',
             'nivels.nombre as nivelNombre',
             'formatos.nombre as formatoNombre',
            
             'autorxes.nombre as autorxNombre',
+            'autorxes.apellido as autorxApellido',
             'licencias.nombre as licenciaNombre',
-            'contribuyentes.nombre as contribuyenteNombre')
+            'contribuyentes.nombre as contribuyenteNombre',
+            'contribuyentes.apellido as contribuyenteApellido')
         ->first();
 
         $etiquetas_cont=DB::table('contenido_etiqueta')->where('id_contenido', $contenido->id)->get();
 
+
+       
 
         return view('detalle_contenido')->with([
         'contenido'=>$contenido,       
@@ -144,8 +191,48 @@ class ContenidoController extends Controller
     public function buscarSubcategoria(Request $request){      
        
 
-        $subcategorias=DB::table('subcategorias')            
-            ->where('id_eje', $request->id_eje)->get();           
+       
+        $subcategorias=DB::table('subcategorias')
+        ->where('id_eje', $request->id_eje)      
+                      
+        ->get();       
+
+
+        if($request->ajax())
+        {          
+
+
+            
+            $output="<option value=''>+</option>";           
+                    
+            
+
+            foreach($subcategorias as $subcat){
+                $output.='<option value="'.$subcat->id.'">'.$subcat->nombre.'</option>';
+
+            }
+
+            
+
+            
+            return Response($output);
+        }
+
+    }
+
+
+     public function buscarSubcategoriaWeb(Request $request){      
+       
+
+       
+        $subcategorias=DB::table('subcategorias')
+        ->where('id_eje', $request->id_eje)      
+        ->whereExists(function ($query) {
+            $query->select(DB::raw(1))
+                     ->from('contenidos')
+                     ->whereColumn('contenidos.id_subcategoria', 'subcategorias.id');
+        })                     
+        ->get();       
 
 
         if($request->ajax())
@@ -263,7 +350,7 @@ class ContenidoController extends Controller
                 
                 $image=request()->file('portada');
                 $nombre= time().'portada'.'.'.$image->getClientOriginalExtension();
-                Image::make(request()->file('portada'))->fit(1200, 400, function ($constraint) {
+                Image::make(request()->file('portada'))->fit(1050, 700, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save('img/portada/'.$nombre);
 
@@ -392,7 +479,7 @@ class ContenidoController extends Controller
 
                 $image=request()->file('portada');
                 $nombre= time().'portada'.'.'.$image->getClientOriginalExtension();
-                Image::make(request()->file('portada'))->fit(1200, 400, function ($constraint) {
+                Image::make(request()->file('portada'))->fit(1050, 700, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save('img/portada/'.$nombre);
 
